@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { usePareto } from "@/hooks/usePareto";
 import ClientTableContainer from "./components/Table/ClientTableContainer";
 import ClientKPIs from "./components/KPI/ClientKPI";
-import { useClients } from "./hooks/useClients";
+import { useClients } from "../../hooks/useClients";
 import DataStateHandler from "../../components/ui/DataStateHandler";
 import SearchInput from "../../components/ui/SearchInput";
 import ToggleVista from "../../components/ui/ToggleVista";

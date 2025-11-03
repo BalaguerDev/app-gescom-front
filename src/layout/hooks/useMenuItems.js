@@ -1,5 +1,5 @@
 import { routes } from "@/constants/routes";
 
 export function useMenuItems() {
-    return routes || [];
+  return Array.isArray(routes) ? routes : [];
 }

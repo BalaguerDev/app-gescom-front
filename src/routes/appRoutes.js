@@ -2,6 +2,8 @@
 import ClientsPage from "../pages/Clients";
 import ZonesPage from "../pages/Zones";
 import HomePage from "../pages/Home/HomePage";
+import BillingPage from "../pages/Billing/BillingPage";
+import RoutesPage from "../pages/Routes/RoutesPage";
 
 
 const routes = [
@@ -21,6 +23,18 @@ const routes = [
         path: "/zonas",
         Component: ZonesPage,
         title: "Mapa",
+        private: true,
+    },
+    {
+        path: "/facturacion",
+        Component: BillingPage,
+        title: "Facturación",
+        private: true,
+    },
+    {
+        path: "/Rutero",
+        Component: RoutesPage,
+        title: "Rutero",
         private: true,
     },
 ];

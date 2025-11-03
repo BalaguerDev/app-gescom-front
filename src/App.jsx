@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import LoadingScreen from "@/components/common/LoadingScreen";
-import routes from "@/routes/appRoutes";
+import routes from "./routes/appRoutes";
 import MainLayout from "./layout/MainLayout";
 
 export default function App() {

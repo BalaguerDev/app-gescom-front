@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useClients } from "../../Clients/hooks/useClients";
+import { useClients } from "../../../hooks/useClients";
 import { useZonesStore } from "../store/useZoneStore";
 import { getClientsInPolygon } from "../utils/revenueCalculations";
 import {

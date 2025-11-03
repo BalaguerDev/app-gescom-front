@@ -1,19 +1,24 @@
-import { Home, Users, Map } from "lucide-react";
+import { Users, Map, Euro, Route } from "lucide-react";
 
 export const routes = [
-    {
-        name: "Inicio",
-        path: "/",
-        icon: Home,
-    },
-    {
-        name: "Clientes",
-        path: "/clientes",
-        icon: Users,
-    },
-    {
-        name: "Zonas",
-        path: "/zonas",
-        icon: Map,
-    },
+  {
+    name: "Clientes",
+    path: "/clientes",
+    icon: Users,
+  },
+  {
+    name: "Zonas",
+    path: "/zonas",
+    icon: Map,
+  },
+  {
+    name: "Facturación",
+    path: "/facturacion",
+    icon: Euro,
+  },
+  {
+    name: "Rutero",
+    path: "/rutas",
+    icon: Route,
+  },
 ];
