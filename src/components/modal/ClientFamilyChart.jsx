@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ToggleVista from "../../../../components/ui/ToggleVista";
-import { formatters } from "../../../../utils/formatters.utils";
+import { formatters } from "../../utils/formatters.utils";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import { useClientFamilyRevenue } from "../../../../hooks/useClientFamilyRevenue";
+import { useClientFamilyRevenue } from "../../hooks/useClientFamilyRevenue";
+import ToggleVista from "../ui/ToggleVista";
 
 const ClientFamilyChart = ({ client }) => {
     const [vista, setVista] = useState("mensual");

@@ -1,8 +1,8 @@
-import ClientFamilyChart from "./ClientFamilyChart";
 import ClientOrdersList from "./ClientOrdersList";
 import ClientCampaigns from "./ClientCampaigns";
-import { formatters } from "../../../../utils/formatters.utils";
-import { useClientSummary } from "../../../../hooks/useClientSummary";
+import { formatters } from "../../utils/formatters.utils";
+import ClientFamilyChart from "./ClientFamilyChart";
+import { useClientSummary } from "../../hooks/useClientSummary";
 
 const ClientOverview = ({ client, onSelectOrder }) => {
   const { diffDays, avgTicket, totalOrders } = useClientSummary(client);

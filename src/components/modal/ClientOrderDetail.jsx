@@ -1,4 +1,4 @@
-import { formatters } from "../../../../utils/formatters.utils";
+import { formatters } from "../../utils/formatters.utils";
 
 const ClientOrderDetail = ({ pedido }) => {
     if (!pedido) return null;

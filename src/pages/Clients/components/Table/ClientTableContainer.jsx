@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ClientModal from "../Modal/ClientModal";
 import { useProcessedClients } from "../../hooks/useProcessedClients";
 import { ClientRow } from "./ClientRow";
 import { ClientCard } from "./ClientCard";
+import ClientModal from "../../../../components/modal/ClientModal";
 
 
 export default function ClientTableContainer({ clients = [], vista }) {

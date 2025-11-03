@@ -1,4 +1,4 @@
-import { formatters } from "../../../../utils/formatters.utils";
+import { formatters } from "../../utils/formatters.utils";
 import { PackageOpen } from "lucide-react";
 
 const ClientOrdersList = ({ pedidos = [], onSelect = () => { } }) => {
