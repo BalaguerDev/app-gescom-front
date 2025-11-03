@@ -1,6 +1,6 @@
-// import CampaignsPage from "@/pages/CampaignsPage";
 
 import ClientsPage from "../pages/Clients";
+import ZonesPage from "../pages/Zones";
 import HomePage from "../pages/Home/HomePage";
 
 
@@ -17,12 +17,12 @@ const routes = [
         title: "Clientes",
         private: true,
     },
-    // {
-    //     path: "/campañas",
-    //     Component: CampaignsPage,
-    //     title: "Campañas",
-    //     private: true,
-    // },
+    {
+        path: "/zonas",
+        Component: ZonesPage,
+        title: "Mapa",
+        private: true,
+    },
 ];
 
 export default routes;

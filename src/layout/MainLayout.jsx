@@ -22,10 +22,16 @@ export default function MainLayout() {
 
                 {/* Contenido central */}
                 <main
-                    className="flex-1 p-6 md:p-10 transition-all duration-300"
+                    className={`
+        flex-1 
+        px-6 md:px-10 
+        transition-all duration-300
+        overflow-y-auto
+    `}
                     style={{
-                        paddingTop: `${top}px`,
-                        paddingBottom: `${bottom}px`,
+                        // En móvil usa offsets dinámicos, en desktop aplica padding fijo
+                        paddingTop: window.innerWidth < 768 ? `${top}px` : "1.25rem",
+                        paddingBottom: window.innerWidth < 768 ? `${bottom}px` : "1.25rem",
                     }}
                 >
                     <ResponsiveWrapper>

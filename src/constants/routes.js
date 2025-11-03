@@ -1,4 +1,4 @@
-import { Home, Users, Megaphone } from "lucide-react";
+import { Home, Users, Map } from "lucide-react";
 
 export const routes = [
     {
@@ -12,8 +12,8 @@ export const routes = [
         icon: Users,
     },
     {
-        name: "Campañas",
-        path: "/campañas",
-        icon: Megaphone,
+        name: "Zonas",
+        path: "/zonas",
+        icon: Map,
     },
 ];
