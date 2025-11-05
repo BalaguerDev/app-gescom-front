@@ -1,7 +1,7 @@
 import { Trash2, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { PARETO_COLORS } from "@/config/paretoColors";
 import { useZoneClients } from "../hooks/useZoneClients";
-import ClientModal from "../../../components/modal/ClientModal";
+import ClientModal from "../../../components/modal/clientModal/ClientModal";
 
 export const ClientList = ({ selectedZone, deleteZone, setSelectedZone, clients = [] }) => {
     const {

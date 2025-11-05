@@ -22,7 +22,7 @@ const Modal = ({ isOpen, onClose, title, children, size = "md", arrowBack }) => 
             onClick={onClose}
         >
             <div
-                className={`bg-white rounded-2xl shadow-xl w-full ${sizeClasses[size]} p-6 relative transform transition-all scale-100`}
+                className={`bg-white rounded-2xl shadow-xl w-full ${sizeClasses[size]} p-2 relative transform transition-all scale-100`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* HEADER */}
