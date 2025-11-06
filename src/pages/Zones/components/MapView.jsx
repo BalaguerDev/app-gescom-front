@@ -25,6 +25,7 @@ export const MapView = ({
 }) => {
   const mapRef = useRef(null);
   useMapMarkers(mapRef, clients, setSelectedClient);
+  
 
   return (
     <div className="relative">
@@ -72,7 +73,7 @@ export const MapView = ({
               <p className="text-[12px] text-gray-600 mt-1">
                 {selectedClient.category && (
                   <>
-                    
+
                     <span className="text-gray-700">Sector: {selectedClient.category}</span>
                   </>
                 )}
@@ -115,15 +116,14 @@ export const MapView = ({
         {zones.map((zone) => (
           <Polygon
             key={zone.id}
-            path={zone.path || []}
+            paths={zone.path}
             options={{
-              fillColor: zone.color || "#3B82F6",
-              fillOpacity: selectedZone?.id === zone.id ? 0.45 : 0.25,
-              strokeColor: zone.color || "#1E40AF",
-              strokeWeight: selectedZone?.id === zone.id ? 3 : 2,
-              zIndex: selectedZone?.id === zone.id ? 2 : 1,
+              fillColor: zone.color,
+              strokeColor: zone.color,
+              fillOpacity: 0.25,
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
             }}
-            onClick={() => setSelectedZone(zone)}
           />
         ))}
 

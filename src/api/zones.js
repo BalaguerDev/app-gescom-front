@@ -1,66 +1,59 @@
-import { handleApiError, safeJson } from "@/utils/api.utils";
+import { handleApiError } from "@/utils/api.utils";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+export const fetchZones = async (getToken) => {
+  try {
+    const token = await getToken();
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/zones`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return { success: res.ok, data };
+  } catch (err) {
+    return handleApiError(err, "fetchZones");
+  }
+};
 
-/**
- * 🔹 Obtener todas las zonas del usuario autenticado
- */
-export async function fetchZones(getAccessTokenSilently) {
-    try {
-        const token = await getAccessTokenSilently();
-        const res = await fetch(`${API_URL}/zones`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+export const autoGenerateZones = async (getToken) => {
+  try {
+    const token = await getToken();
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/zones/auto`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return { success: res.ok, data };
+  } catch (err) {
+    return handleApiError(err, "autoGenerateZones");
+  }
+};
 
-        if (!res.ok) throw new Error(`Error ${res.status}: al cargar las zonas`);
+export const createZone = async (getToken, zoneData) => {
+  try {
+    const token = await getToken();
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/zones`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(zoneData),
+    });
+    const data = await res.json();
+    return { success: res.ok, data };
+  } catch (err) {
+    return handleApiError(err, "createZone");
+  }
+};
 
-        const data = await safeJson(res);
-        return { success: true, data };
-    } catch (error) {
-        return handleApiError(error, "fetchZones");
-    }
-}
-
-/**
- * 🔹 Crear una nueva zona
- */
-export async function createZone(getAccessTokenSilently, zoneData) {
-    try {
-        const token = await getAccessTokenSilently();
-        const res = await fetch(`${API_URL}/zones`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(zoneData),
-        });
-
-        if (!res.ok) throw new Error(`Error ${res.status}: al crear la zona`);
-
-        const data = await safeJson(res);
-        return { success: true, data };
-    } catch (error) {
-        return handleApiError(error, "createZone");
-    }
-}
-
-/**
- * 🔹 Eliminar zona por ID
- */
-export async function deleteZone(getAccessTokenSilently, id) {
-    try {
-        const token = await getAccessTokenSilently();
-        const res = await fetch(`${API_URL}/zones/${id}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (!res.ok) throw new Error(`Error ${res.status}: al eliminar la zona`);
-
-        const data = await safeJson(res);
-        return { success: true, data };
-    } catch (error) {
-        return handleApiError(error, "deleteZone");
-    }
-}
+export const deleteZone = async (getToken, id) => {
+  try {
+    const token = await getToken();
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/zones/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return { success: res.ok };
+  } catch (err) {
+    return handleApiError(err, "deleteZone");
+  }
+};
