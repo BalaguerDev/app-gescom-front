@@ -49,7 +49,7 @@ export const ClientList = ({ selectedZone, deleteZone, setSelectedZone, clients 
             ) : sortedClients.length === 0 ? (
                 <p className="text-sm text-gray-400 italic">No hay clientes en esta zona.</p>
             ) : (
-                <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
+                <ul className="space-y-2 max-h-96 overflow-y-auto pr-1">
                     {sortedClients.map((client) => {
                         const isUp = client.crecimiento >= 0;
                         const color = PARETO_COLORS[client.type] || PARETO_COLORS.C;

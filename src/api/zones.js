@@ -1,4 +1,8 @@
 import { handleApiError } from "@/utils/api.utils";
+import axios from 'axios'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 export const fetchZones = async (getToken) => {
   try {
@@ -55,5 +59,26 @@ export const deleteZone = async (getToken, id) => {
     return { success: res.ok };
   } catch (err) {
     return handleApiError(err, "deleteZone");
+  }
+};
+
+export const updateZone = async (getToken, zoneId, updatedData) => {
+  try {
+    const token = await getToken();
+    const response = await axios.put(
+      `${API_BASE_URL}/zones/${zoneId}`,
+      updatedData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Devuelve un formato coherente con el resto
+    return { success: true, data: response.data };
+  } catch (err) {
+    return handleApiError(err, "updateZone");
   }
 };
