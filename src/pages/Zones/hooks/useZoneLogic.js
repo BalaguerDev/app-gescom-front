@@ -6,6 +6,7 @@ import {
   autoGenerateZones,
   deleteZone as deleteZoneAPI,
   createZone as createZoneAPI,
+  updateZone as updateZoneAPI, // ✅ ya importada
 } from "@/api/zones";
 
 export const useZonesLogic = () => {
@@ -13,7 +14,7 @@ export const useZonesLogic = () => {
   const { clients, loading, error } = useClients(getAccessTokenSilently);
   const mapRef = useRef(null);
 
-  // 🔹 Estado local (persistencia = backend)
+  // 🔹 Estado local
   const [zones, setZones] = useState([]);
   const [selectedZone, setSelectedZone] = useState(null);
   const [drawingMode, setDrawingMode] = useState(false);
@@ -22,12 +23,11 @@ export const useZonesLogic = () => {
   const [zoneName, setZoneName] = useState("");
   const [zoneColor, setZoneColor] = useState("#3b82f6");
 
-  // ✅ Evita ejecución doble por React.StrictMode
   const isLoadedRef = useRef(false);
 
-  // ✅ Cargar zonas o generarlas si no existen
+  // 🔹 Cargar zonas iniciales
   useEffect(() => {
-    if (isLoadedRef.current) return; // 🚫 Previene llamada doble
+    if (isLoadedRef.current) return;
     isLoadedRef.current = true;
 
     (async () => {
@@ -35,18 +35,17 @@ export const useZonesLogic = () => {
         console.log("🔄 Cargando zonas desde backend...");
         const response = await fetchZones(getAccessTokenSilently);
 
-        // 🧠 Normalizamos estructura del backend
         const zonesFromAPI =
           Array.isArray(response?.data?.zones)
             ? response.data.zones
             : Array.isArray(response?.zones)
-            ? response.zones
-            : [];
+              ? response.zones
+              : [];
 
-        if (Array.isArray(zonesFromAPI) && zonesFromAPI.length > 0) {
+        if (zonesFromAPI.length > 0) {
           console.log(`✅ ${zonesFromAPI.length} zonas cargadas correctamente`);
           setZones(zonesFromAPI);
-          return; // 🚫 No generar nuevas
+          return;
         }
 
         console.warn("⚠️ No hay zonas existentes → generando automáticas...");
@@ -55,8 +54,8 @@ export const useZonesLogic = () => {
           Array.isArray(autoResponse?.data?.zones)
             ? autoResponse.data.zones
             : Array.isArray(autoResponse?.zones)
-            ? autoResponse.zones
-            : [];
+              ? autoResponse.zones
+              : [];
 
         if (autoZones.length > 0) {
           console.log(`🆕 ${autoZones.length} zonas generadas automáticamente`);
@@ -70,7 +69,7 @@ export const useZonesLogic = () => {
     })();
   }, [getAccessTokenSilently]);
 
-  // 🔹 Crear zona manualmente
+  // 🔹 Crear zona
   const handleCreateZone = async (zoneData) => {
     try {
       const response = await createZoneAPI(getAccessTokenSilently, zoneData);
@@ -92,6 +91,22 @@ export const useZonesLogic = () => {
       console.log(`🗑️ Zona ${id} eliminada`);
     } catch (err) {
       console.error("❌ Error eliminando zona:", err.message);
+    }
+  };
+
+  // 🔹 Actualizar zona (nombre, color, etc.)
+  const handleUpdateZone = async (zoneId, updatedData) => {
+    try {
+      const response = await updateZoneAPI(getAccessTokenSilently, zoneId, updatedData);
+      const updatedZone = response.data.zone || response.data || updatedData;
+
+      setZones((prev) =>
+        prev.map((z) => (z.id === zoneId ? { ...z, ...updatedZone } : z))
+      );
+
+      console.log(`✅ Zona actualizada: ${updatedZone.name}`);
+    } catch (error) {
+      console.error("❌ Error actualizando zona:", error);
     }
   };
 
@@ -127,6 +142,7 @@ export const useZonesLogic = () => {
     setZoneColor,
     handleDeleteZone,
     handleCreateZone,
+    handleUpdateZone, // ✅ correcto
     onLoad,
     loading,
     error,

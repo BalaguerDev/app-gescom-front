@@ -71,7 +71,7 @@ export default function ZonesPage() {
 
       {/* 📋 Listados */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ZoneList {...enhancedLogic} />
+        <ZoneList {...enhancedLogic}  handleUpdateZone={logic.handleUpdateZone}/>
         <ClientList {...enhancedLogic} deleteZone={logic.handleDeleteZone} />
       </div>
 
