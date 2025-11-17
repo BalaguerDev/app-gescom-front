@@ -3,7 +3,7 @@ import ClientsPage from "../pages/Clients";
 import ZonesPage from "../pages/Zones";
 import HomePage from "../pages/Home/HomePage";
 import BillingPage from "../pages/Billing/BillingPage";
-import RoutesPage from "../pages/Routes/components/RoutesPage";
+import RoutesPage from "../pages/Routes/RoutesPage";
 
 
 const routes = [
